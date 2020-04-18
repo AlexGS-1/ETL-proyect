@@ -1,3 +1,10 @@
+DROP Table anime_catalogue;
+DROP Table anime_genre_source;
+DROP Table genre;
+DROP Table links;
+DROP Table origin;
+DROP Table ratings;
+
 CREATE TABLE anime_catalogue (
 id_anime INT PRIMARY KEY,
 title VARCHAR(200),
@@ -13,19 +20,10 @@ id_genre INT PRIMARY KEY,
 genre VARCHAR(200)
 );
 CREATE TABLE ratings(
-	id_ratings INT PRIMARY KEY,
 	id_anime INT,
 	id_source INT,
 	score FLOAT,
-	FOREIGN KEY (id_anime) REFERENCES anime_catalogue (id_anime),
-	FOREIGN KEY (id_source) REFERENCES origin(id_source)
-)
-
-CREATE TABLE links(
-	id_url INT PRIMARY KEY,
-	id_anime INT,
-	id_source INT,
-	url VARCHAR(200),
+    url VARCHAR(200),
 	FOREIGN KEY (id_anime) REFERENCES anime_catalogue (id_anime),
 	FOREIGN KEY (id_source) REFERENCES origin(id_source)
 )
@@ -38,4 +36,3 @@ CREATE TABLE anime_genre_source(
 	FOREIGN KEY (id_genre) REFERENCES genre(id_genre),
 	FOREIGN KEY (id_source) REFERENCES origin(id_source)
 )
-
